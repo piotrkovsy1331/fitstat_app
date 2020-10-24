@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "581355322292",
+    "firebase_url": "https://fitstatapp.firebaseio.com",
+    "project_id": "fitstatapp",
+    "storage_bucket": "fitstatapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581355322292:android:cbea1da43c78669e2a10e1",
+        "android_client_info": {
+          "package_name": "com.rafalskii.fitstat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581355322292-nrcp49p2cog0edsn6ed2q6h703k6d883.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7vyBun0CQ9q5afpvk9AB44clKvSS4S9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581355322292-nrcp49p2cog0edsn6ed2q6h703k6d883.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "581355322292-hc5d66bv71m0vc9gukt3c7ch3ckg88ir.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rafalskii.fitstatApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
