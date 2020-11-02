@@ -1,7 +1,6 @@
 import 'package:fitstat_app/screens/authenticate/register.dart';
 import 'package:fitstat_app/screens/authenticate/sign_in.dart';
 import 'package:flutter/material.dart';
-import 'package:fitstat_app/services/auth.dart';
 
 class Authenticate extends StatefulWidget {
   Authenticate({Key key}) : super(key: key);
