@@ -13,3 +13,5 @@ const textInputDecoration = InputDecoration(
       color: Colors.pink,
       width: 2,
     )));
+
+final Color backgroundColor = Color(0xFF4A4A58);
