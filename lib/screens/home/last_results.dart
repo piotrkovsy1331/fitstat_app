@@ -8,7 +8,7 @@ class DiaryPage extends StatelessWidget with NavigationStates {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        "My Last results",
+        "Mój Dziennik",
         style: TextStyle(
             color: Colors.black, fontSize: 30, fontWeight: FontWeight.w300),
       ),

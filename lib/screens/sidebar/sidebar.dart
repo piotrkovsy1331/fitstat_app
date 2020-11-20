@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fitstat_app/services/auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,7 @@ class SideBar extends StatefulWidget {
 
 class _SideBarState extends State<SideBar>
     with SingleTickerProviderStateMixin<SideBar> {
+  final AuthService _auth = AuthService();
   AnimationController _animationController;
   StreamController<bool> isSidebarOpenedStreamController;
   Stream<bool> isSidebarOpenedStream;
@@ -78,14 +80,14 @@ class _SideBarState extends State<SideBar>
                       ),
                       ListTile(
                         title: Text(
-                          "Prateek",
+                          "Username",
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 30,
                               fontWeight: FontWeight.w800),
                         ),
                         subtitle: Text(
-                          "www.techieblossom.com",
+                          "Adres email  ",
                           style: TextStyle(
                             color: Color(0xFF1BB5FD),
                             fontSize: 18,
@@ -151,11 +153,14 @@ class _SideBarState extends State<SideBar>
                       ),
                       MenuItem(
                         icon: Icons.settings,
-                        title: "Settings",
+                        title: "Ustawienia",
                       ),
                       MenuItem(
                         icon: Icons.exit_to_app,
-                        title: "Logout",
+                        title: "Wyloguj",
+                        onTap: () async {
+                          await _auth.signOut();
+                        },
                       ),
                     ],
                   ),
