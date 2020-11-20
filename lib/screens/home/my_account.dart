@@ -2,9 +2,14 @@ import 'package:fitstat_app/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fitstat_app/bloc_navigation/bloc_navigation.dart';
 
-class MyAccount extends StatelessWidget with NavigationStates {
+class MyAccount extends StatefulWidget with NavigationStates {
   const MyAccount({Key key}) : super(key: key);
 
+  @override
+  _MyAccountState createState() => _MyAccountState();
+}
+
+class _MyAccountState extends State<MyAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
