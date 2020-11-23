@@ -10,6 +10,9 @@ class MyAccount extends StatefulWidget with NavigationStates {
 }
 
 class _MyAccountState extends State<MyAccount> {
+  final List<String> sex = ['kobieta', 'męszczyzna'];
+  //form values
+  String _sex;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,8 +89,17 @@ class _MyAccountState extends State<MyAccount> {
                   hintText: "Rafał",
                   floatingLabelBehavior: FloatingLabelBehavior.always),
             ),
+            SizedBox(height: 10.0),
             TextField(
               decoration: InputDecoration(labelText: " ", hintText: ""),
+            ),
+            SizedBox(height: 10.0),
+            DropdownButtonFormField(
+              value: _sex,
+              items: sex.map((sex) {
+                return DropdownMenuItem(value: sex, child: Text("$sex"));
+              }),
+              decoration: textInputDecoration,
             ),
           ],
         ),
