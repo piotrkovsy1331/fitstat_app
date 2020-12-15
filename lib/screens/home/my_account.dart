@@ -1,6 +1,7 @@
 import 'package:fitstat_app/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fitstat_app/bloc_navigation/bloc_navigation.dart';
+import 'package:flutter/cupertino.dart';
 
 class MyAccount extends StatefulWidget with NavigationStates {
   const MyAccount({Key key}) : super(key: key);
@@ -10,9 +11,53 @@ class MyAccount extends StatefulWidget with NavigationStates {
 }
 
 class _MyAccountState extends State<MyAccount> {
-  final List<String> sex = ['kobieta', 'męszczyzna'];
+  final _formKey = GlobalKey<FormState>();
+  final List<String> sex = ['kobieta', 'meszczyzna'];
   //form values
   String _sex;
+  String _name;
+  int _weight;
+  int height;
+
+  List<String> items = [
+    "Rafał",
+    "Paweł",
+    "Andzelika",
+    "Zofia",
+    "Marika",
+    "Tomasz",
+    "Marcin"
+  ];
+  int selected_item = 0;
+  Widget _buildItemPicker() {
+    return CupertinoPicker(
+        itemExtent: 60.0,
+        onSelectedItemChanged: (index) {
+          setState(() {
+            selected_item = index;
+            print("You Selecte: ${items[selected_item]}");
+          });
+        },
+        backgroundColor: Colors.white,
+        children: List<Widget>.generate(items.length, (index) {
+          return Center(
+            child: Text(
+              items[index],
+              style: TextStyle(fontSize: 22.0),
+            ),
+          );
+        }));
+  }
+
+  // funkcja do pokazania okna dialogowego
+  Future<Null> cupertinoDialogShow(BuildContext context) async {
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return MyDialogClass();
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,27 +128,115 @@ class _MyAccountState extends State<MyAccount> {
                 ],
               ),
             ),
-            TextField(
-              decoration: InputDecoration(
-                  labelText: "Pseudonim ",
-                  hintText: "Rafał",
-                  floatingLabelBehavior: FloatingLabelBehavior.always),
-            ),
-            SizedBox(height: 10.0),
-            TextField(
-              decoration: InputDecoration(labelText: " ", hintText: ""),
-            ),
-            SizedBox(height: 10.0),
-            DropdownButtonFormField(
-              value: _sex,
-              items: sex.map((sex) {
-                return DropdownMenuItem(value: sex, child: Text("$sex"));
-              }),
-              decoration: textInputDecoration,
+            Form(
+              key: _formKey,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 15.0),
+                  Text(
+                    "Aktualizuj swoje dane ",
+                    style: TextStyle(fontSize: 18.0, color: Colors.black),
+                  ),
+                  SizedBox(height: 20.0),
+                  TextFormField(
+                    decoration: textInputDecoration,
+                    validator: (value) => value.isEmpty ? "Podaj imie " : null,
+                    onChanged: (value) => setState(() => _name = value),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  DropdownButtonFormField(
+                    value: _sex ?? 'meszczyzna',
+                    items: sex.map((wchichSex) {
+                      return DropdownMenuItem(
+                        value: wchichSex,
+                        child: Text('$wchichSex'),
+                      );
+                    }).toList(),
+                    onChanged: (value) => setState(() => _sex = value),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  CupertinoButton(
+                      child: Text("press me "),
+                      color: CupertinoColors.activeBlue,
+                      onPressed: () {
+                        cupertinoDialogShow(context);
+                      }),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  CupertinoButton(
+                      child: Text("wybierz swoją wage "),
+                      color: CupertinoColors.activeBlue,
+                      onPressed: () async {
+                        await showModalBottomSheet<int>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return _buildItemPicker();
+                            });
+                      }),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  RaisedButton(
+                    onPressed: () async {
+                      print(_name);
+                      print(_sex);
+                    },
+                    color: Colors.pink[400],
+                    child: Text(
+                      "Zapisz",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class MyDialogClass extends StatefulWidget {
+  MyDialogClass({Key key}) : super(key: key);
+
+  @override
+  _MyDialogClassState createState() => _MyDialogClassState();
+}
+
+class _MyDialogClassState extends State<MyDialogClass> {
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoAlertDialog(
+      title: Text(
+        "Alerting you",
+        style: TextStyle(color: Colors.red),
+      ),
+      content: Text("Guwno dupa cycyki"),
+      actions: <Widget>[
+        FlatButton(
+            onPressed: () {},
+            child: Text(
+              "Verify",
+              style: TextStyle(color: Colors.blue),
+            )),
+        FlatButton(
+            onPressed: () {
+              Navigator.of(context).pop(context);
+            },
+            child: Text(
+              "Cancel",
+              style: TextStyle(color: Colors.blue),
+            ))
+      ],
     );
   }
 }
