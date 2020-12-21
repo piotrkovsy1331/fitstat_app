@@ -1,53 +1,41 @@
-import 'package:fitstat_app/screens/home/my_account.dart';
-import 'package:fitstat_app/services/auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:fitstat_app/services/auth.dart';
-import 'package:fitstat_app/bloc_navigation/bloc_navigation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../sidebar/sidebar.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:fitstat_app/components/my_bottom_nav_bar.dart';
+import 'package:fitstat_app/screens/home/components/body.dart';
+import 'package:fitstat_app/shared/size_config.dart';
 
-class Home extends StatelessWidget with NavigationStates {
-  // final AuthService _auth = AuthService();
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
-      body: BlocProvider<NavigationBloc>(
-        //PRzekazałem Do NAvigationBLoc jako argument stronę Home() jednak czy to jest oK
-        create: (context) => NavigationBloc(MyAccount()),
-        child: Stack(
-          children: <Widget>[
-            BlocBuilder<NavigationBloc, NavigationStates>(
-              builder: (context, navigationState) {
-                return navigationState as Widget;
-              },
-            ),
-            SideBar(),
-          ],
-        ),
+      appBar: buildAppBar(),
+      body: Body(),
+      // We are not able to BottomNavigationBar because the icon parameter dont except SVG
+      // We also use Provied to manage the state of our Nav
+      bottomNavigationBar: MyBottomNavBar(),
+    );
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      leading: IconButton(
+        icon: SvgPicture.asset("assets/icons/menu.svg"),
+        onPressed: () {},
       ),
+      // On Android by default its false
+      centerTitle: true,
+      title: Image.asset("assets/images/logo.png"),
+      actions: <Widget>[
+        IconButton(
+          icon: SvgPicture.asset("assets/icons/search.svg"),
+          onPressed: () {},
+        ),
+        SizedBox(
+          // It means 5 because by out defaultSize = 10
+          width: SizeConfig.defaultSize * 0.5,
+        )
+      ],
     );
   }
 }
-
-//  backgroundColor: backgroundColor,
-//       appBar: AppBar(
-//         title: Text('Fitstatapp'),
-//         backgroundColor: backgroundColor,
-//         elevation: 0,
-//         actions: <Widget>[
-//           FlatButton.icon(
-//             icon: Icon(Icons.person),
-//             label: Text('logout'),
-//             onPressed: () async {
-//               await _auth.signOut();
-//             },
-//           )
-//         ],
-//       ),
-//       body: Stack(
-//         children: <Widget>[
-//           // BurgerMenu(),
-//           // Dashboard()
-//           DiaryPage(),
-//         ],
-//       ),
