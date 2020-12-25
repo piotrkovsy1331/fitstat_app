@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fitstat_app/shared/constants.dart';
 
 class RecipeBundle {
   final int id, chefs, recipes;
@@ -21,27 +22,45 @@ List<RecipeBundle> recipeBundles = [
     id: 1,
     chefs: 16,
     recipes: 95,
-    title: "Cook Something New Everyday",
+    title: "Śniadanie",
     description: "New and tasty recipes every minute",
     imageSrc: "assets/images/cook_new@2x.png",
-    color: Color(0xFFD82D40),
+    color: kBreakfastColor,
   ),
   RecipeBundle(
     id: 2,
     chefs: 8,
     recipes: 26,
-    title: "Best of 2020",
+    title: "Lunch",
     description: "Cook recipes for special occasions",
     imageSrc: "assets/images/best_2020@2x.png",
-    color: Color(0xFF90AF17),
+    color: kLunchColor,
   ),
   RecipeBundle(
     id: 3,
     chefs: 10,
     recipes: 43,
-    title: "Food Court",
+    title: "Obiad",
     description: "What's your favorite food dish make it now",
     imageSrc: "assets/images/food_court@2x.png",
-    color: Color(0xFF2DBBD8),
+    color: kDinnerColor,
+  ),
+  RecipeBundle(
+    id: 4,
+    chefs: 16,
+    recipes: 95,
+    title: "Kolacja",
+    description: "New and tasty recipes every minute",
+    imageSrc: "assets/images/cook_new@2x.png",
+    color: kSupperColor,
+  ),
+  RecipeBundle(
+    id: 4,
+    chefs: 16,
+    recipes: 95,
+    title: "Przekąski",
+    description: "New and tasty recipes every minute",
+    imageSrc: "assets/images/cook_new@2x.png",
+    color: kSnackColor,
   ),
 ];

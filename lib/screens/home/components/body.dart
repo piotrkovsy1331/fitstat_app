@@ -14,19 +14,18 @@ class Body extends StatelessWidget {
           Categories(),
           Expanded(
             child: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize * 2),
+              padding: EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize),
               child: GridView.builder(
                 itemCount: recipeBundles.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount:
-                      SizeConfig.orientation == Orientation.landscape ? 2 : 1,
-                  mainAxisSpacing: 20,
+                      SizeConfig.orientation == Orientation.landscape ? 1 : 1,
+                  mainAxisSpacing: 10,
                   crossAxisSpacing:
                       SizeConfig.orientation == Orientation.landscape
                           ? SizeConfig.defaultSize * 2
                           : 0,
-                  childAspectRatio: 1.65,
+                  childAspectRatio: 4.2,
                 ),
                 itemBuilder: (context, index) => RecipeBundelCard(
                   recipeBundle: recipeBundles[index],

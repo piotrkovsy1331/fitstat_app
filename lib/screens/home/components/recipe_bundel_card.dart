@@ -1,3 +1,4 @@
+import 'package:fitstat_app/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fitstat_app/models/recipebundel.dart';
@@ -32,44 +33,15 @@ class RecipeBundelCard extends StatelessWidget {
                     Text(
                       recipeBundle.title,
                       style: TextStyle(
-                          fontSize: defaultSize * 2.2, //22
+                          fontSize: defaultSize * 2.5, //22
                           color: Colors.white),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      overflow: TextOverflow.visible,
                     ),
-                    SizedBox(height: defaultSize * 0.5), // 5
-                    Text(
-                      recipeBundle.description,
-                      style: TextStyle(color: Colors.white54),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Spacer(),
-                    buildInfoRow(
-                      defaultSize,
-                      iconSrc: "assets/icons/pot.svg",
-                      text: "${recipeBundle.recipes} Recipes",
-                    ),
-                    SizedBox(height: defaultSize * 0.5), //5
-                    buildInfoRow(
-                      defaultSize,
-                      iconSrc: "assets/icons/chef.svg",
-                      text: "${recipeBundle.chefs} Chefs",
-                    ),
-                    Spacer(),
                   ],
                 ),
               ),
             ),
-            SizedBox(width: defaultSize * 0.5), //5
-            AspectRatio(
-              aspectRatio: 0.71,
-              child: Image.asset(
-                recipeBundle.imageSrc,
-                fit: BoxFit.cover,
-                alignment: Alignment.centerLeft,
-              ),
-            )
           ],
         ),
       ),
