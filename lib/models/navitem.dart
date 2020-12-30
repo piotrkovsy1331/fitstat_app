@@ -1,3 +1,4 @@
+import 'package:fitstat_app/screens/search/searching.dart';
 import 'package:flutter/material.dart';
 import 'package:fitstat_app/screens/home/home.dart';
 import 'package:fitstat_app/screens/profile/my_account.dart';
@@ -38,6 +39,7 @@ class NavItems extends ChangeNotifier {
     NavItem(
       id: 2,
       icon: "assets/icons/list.svg",
+      destination: Searching(),
     ),
     NavItem(
       id: 3,

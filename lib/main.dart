@@ -27,8 +27,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:fitstat_app/models/NavItem.dart';
 import 'package:fitstat_app/models/user.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await DotEnv().load('.env');
   runApp(MyApp());
 }
 
