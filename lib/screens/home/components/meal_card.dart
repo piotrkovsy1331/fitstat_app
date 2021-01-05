@@ -65,7 +65,7 @@ class MealCard extends StatelessWidget {
                         ),
                         Spacer(),
                         Text(
-                          "53,4",
+                          "444,4",
                           style: TextStyle(
                               fontSize: defaultSize * 1.5, //22
                               color: Colors.white),

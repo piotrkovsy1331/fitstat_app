@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fitstat_app/components/my_bottom_nav_bar.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:dio/dio.dart';
 
 class Searching extends StatefulWidget {
   Searching({Key key}) : super(key: key);
   final dio = Dio(BaseOptions(
-    baseUrl: 'https://developers.zomato.com/api/v2.1/search',
+    baseUrl: 'https://trackapi.nutritionix.com/V2/search/instant',
     //TODO Dodany klucz od api na sztywno a powiniem być zaciągnięty z .env
-    headers: {'user-key': '50e342179d52c55a34cf9c0bb96b8d5f'},
+    headers: {
+      'x-app-id': '460fc3b4',
+      "x-app-key": 'e27ccc02c41d94a0769a07f753c56442'
+    },
   ));
   @override
   _SearchingState createState() => _SearchingState();
@@ -18,16 +20,19 @@ class _SearchingState extends State<Searching> {
   List _foodList;
 
   void searchFood(String query) async {
+    bool branded = true;
     final response = await widget.dio.get(
       '',
       queryParameters: {
-        'q': query,
+        'query': query,
+        // 'branded': branded,
       },
     );
     print(response);
     setState(() {
-      _foodList = response.data['restaurants'];
+      _foodList = response.data['branded'];
     });
+    _foodList.map((e) => print(e));
   }
 
   @override
@@ -69,10 +74,19 @@ class _SearchingState extends State<Searching> {
                     child: ListView(
                       children: _foodList.map((food) {
                         return ListTile(
-                          title: Text(food['restaurant']['name']),
-                          subtitle:
-                              Text(food['restaurant']['location']['address']),
-                          trailing: Text(food['restaurant']['name']),
+                          title: Text(
+                            food['food_name'],
+                            maxLines: 1,
+                          ),
+                          subtitle: Text(
+                            food['nf_calories'].toString(),
+                            maxLines: 1,
+                          ),
+                          trailing: Text(
+                            food['brand_name_item_name'],
+                            maxLines: 1,
+                          ),
+                          hoverColor: Colors.yellow ,
                         );
                       }).toList(),
                     ),
