@@ -1,6 +1,9 @@
 import 'package:fitstat_app/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fitstat_app/services/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:fitstat_app/models/user.dart';
 
 import 'package:fitstat_app/components/my_bottom_nav_bar.dart';
 import 'package:fitstat_app/shared/constants.dart';
@@ -15,6 +18,7 @@ class MyAccount extends StatefulWidget {
 }
 
 class _MyAccountState extends State<MyAccount> {
+  final AuthService auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   final List<String> sex = ['kobieta', 'meszczyzna'];
   //form values
@@ -81,9 +85,11 @@ class _MyAccountState extends State<MyAccount> {
       title: Text("Profile"),
       actions: <Widget>[
         FlatButton(
-          onPressed: () {},
+          onPressed: () async {
+            await auth.signOut();
+          },
           child: Text(
-            "Edit",
+            "Wyloguj",
             style: TextStyle(
               color: Colors.white,
               fontSize: SizeConfig.defaultSize * 1.6, //16

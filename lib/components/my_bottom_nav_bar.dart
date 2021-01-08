@@ -1,9 +1,11 @@
+import 'package:fitstat_app/screens/authenticate/authenticate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:fitstat_app/shared/constants.dart';
 import 'package:fitstat_app/models/NavItem.dart';
 import 'package:fitstat_app/shared/size_config.dart';
+import 'package:fitstat_app/models/user.dart';
 
 class MyBottomNavBar extends StatelessWidget {
   const MyBottomNavBar({
@@ -12,8 +14,12 @@ class MyBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
     double defaultSize = SizeConfig.defaultSize;
-    return Consumer<NavItems>(
+    if (user == null) {
+      return Authenticate();
+    } else {
+      return Consumer<NavItems>(
       builder: (context, navItems, child) => Container(
         padding: EdgeInsets.symmetric(horizontal: defaultSize * 3), //30
         // just for demo
@@ -55,6 +61,7 @@ class MyBottomNavBar extends StatelessWidget {
         ),
       ),
     );
+    }
   }
 
   IconButton buildIconNavBarItem(
