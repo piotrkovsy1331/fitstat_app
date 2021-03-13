@@ -1,7 +1,8 @@
+import 'package:fitstat_app/screens/mealsScreen/mealDetailScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fitstat_app/models/meal.dart';
 import 'package:fitstat_app/shared/size_config.dart';
+import 'package:fitstat_app/models/meal.dart';
 
 class MealCard extends StatelessWidget {
   final Meal meal;
@@ -44,10 +45,17 @@ class MealCard extends StatelessWidget {
                           overflow: TextOverflow.visible,
                         ),
                         Spacer(),
-                        Icon(
-                          Icons.add_circle,
-                          size: defaultSize * 2.8,
-                          color: Colors.white,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushNamed(MealDetailScreen.routName);
+                                print("Tapnołeś");
+                          },
+                          child: Icon(
+                            Icons.add_circle,
+                            size: defaultSize * 2.8,
+                            color: Colors.white,
+                          ),
                         )
                       ],
                     ),
@@ -101,21 +109,7 @@ class MealCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // ExpansionTile(
-                    //   title: Text("Blalbla"),
-                    //   leading: Icon(Icons.local_pizza),
-                    //   trailing: Icon(Icons.headset),
-                    //   children: <Widget>[
-                    //     Row(
-                    //       children: <Widget>[
-                    //         Text("Pokaz kotku co masz w środku "),
-                    //         Text("Pokaz kotku co masz w środku "),
-                    //         Text("Pokaz kotku co masz w środku "),
-                    //       ],
-                    //     ),
-                    //     Text("Pokaz kotku co masz w środku "),
-                    //   ],
-                    // )
+                
                   ],
                 ),
               ),

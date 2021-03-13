@@ -24,9 +24,8 @@ class HomeScreen extends StatelessWidget {
     return AppBar(
       leading: IconButton(
         icon: SvgPicture.asset("assets/icons/menu.svg"),
-        onPressed: () async {
-          await _auth.signOut();
-          print('Wylogowanie');
+        onPressed: () {
+        
         },
       ),
       // On Android by default its false

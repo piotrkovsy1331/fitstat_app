@@ -54,6 +54,7 @@ class _RegisterState extends State<Register> {
                       onChanged: (val) {
                         setState(() => email = val);
                       },
+                      
                     ),
                     SizedBox(height: 20.0),
                     TextFormField(
