@@ -49,7 +49,7 @@ class MealCard extends StatelessWidget {
                           onTap: () {
                             Navigator.of(context)
                                 .pushNamed(MealDetailScreen.routName);
-                                print("Tapnołeś");
+                            print("Tapnołeś");
                           },
                           child: Icon(
                             Icons.add_circle,
@@ -109,7 +109,6 @@ class MealCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                
                   ],
                 ),
               ),

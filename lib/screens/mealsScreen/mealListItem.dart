@@ -1,3 +1,4 @@
+import 'package:fitstat_app/shared/constants.dart';
 import 'package:flutter/material.dart';
 
 // Widget that contains meal item in a meal on a day. When you click
@@ -20,52 +21,79 @@ class _MealListItemState extends State<MealListItem> {
     return Dismissible(
       key: UniqueKey(),
       child: Card(
-        color: Color.fromRGBO(223, 242, 228, 100),
-        shadowColor: Colors.green,
-        child: Column(
-          children: <Widget>[
-            GestureDetector(
-              onLongPress: () {
-                print("Usunieto pozycje");
-              },
-              child: ListTile(
-                leading: Text(
-                  "Kanapka Drwala ",
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      wordSpacing: 3),
-                ),
-                trailing: Icon(
-                  _expanded ? Icons.expand_less : Icons.expand_more,
-                  color: Colors.black,
-                ),
-                onTap: () {
-                  setState(() {
-                    _expanded = !_expanded;
-                  });
+        clipBehavior: Clip.antiAlias,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(14.0)),
+        shadowColor: Colors.red,
+        elevation: 3,
+        child: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+            colors: GradientColors.mango,
+            begin: Alignment.bottomLeft,
+            end: Alignment.bottomRight,
+          )),
+          child: Column(
+            children: <Widget>[
+              GestureDetector(
+                onLongPress: () {
+                  print("Usunieto pozycje");
                 },
+                child: ListTile(
+                  leading: Text(
+                    "Kanapka Drwala ",
+                    style: TextStyle(
+                        fontSize: 19,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        wordSpacing: 3),
+                  ),
+                  trailing: Icon(
+                    _expanded ? Icons.expand_less : Icons.expand_more,
+                    color: Colors.black,
+                  ),
+                  onTap: () {
+                    setState(() {
+                      _expanded = !_expanded;
+                    });
+                  },
+                ),
               ),
-            ),
-            if (_expanded)
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 10, 5),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Column(
-                      children: <Widget>[
-                        Text("kcal : 5"),
-                        Text("tluszcz : 6"),
-                        Text("bialko : 39"),
-                        Text("cukier : 60"),
-                      ],
+              if (_expanded)
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 10, 5),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Column(
+                        children: <Widget>[
+                          Text("kcal : 5",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
+                          Text("tluszcz : 6",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
+                          Text("bialko : 39",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
+                          Text("cukier : 60",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
+                        ],
+                      ),
                     ),
-                    
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         ),
       ), //the widget you want the swipe to be detected on
       direction: DismissDirection.endToStart, // or whatever

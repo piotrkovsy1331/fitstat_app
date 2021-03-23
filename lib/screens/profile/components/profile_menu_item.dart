@@ -21,7 +21,7 @@ class ProfileMenuItem extends StatelessWidget {
       onTap: press,
       child: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: defaultSize * 2, vertical: defaultSize * 3),
+            horizontal: defaultSize * 4, vertical: defaultSize * 3),
         child: SafeArea(
           child: Row(
             children: <Widget>[
@@ -34,12 +34,6 @@ class ProfileMenuItem extends StatelessWidget {
                   color: kTextLigntColor,
                 ),
               ),
-              Spacer(),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: defaultSize * 1.6,
-                color: kTextLigntColor,
-              )
             ],
           ),
         ),

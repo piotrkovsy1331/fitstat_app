@@ -11,45 +11,65 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
     return SafeArea(
-      child: Center(
-        child: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                "Śniadanie",
-                style: TextStyle(
-                  fontSize: defaultSize * 2.5, //22
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
+      child: Stack(children: [
+        Center(
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          "Śniadanie",
+                          style: TextStyle(
+                            fontSize: defaultSize * 2.8, //22
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  child: ListView.builder(
+                    itemCount: 10,
+                    itemBuilder: (context, index) => MealListItem(),
+                  ),
                 ),
               ),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
-                  width: 1,
-                ),
-                borderRadius: BorderRadius.circular(3),
-              ),
-            ),
-            FlatButton(
-              onPressed: () {
+            ],
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Padding(
+            padding: EdgeInsets.all(50.0),
+            child: GestureDetector(
+              onTap: () {
                 Navigator.of(context).pushNamed(AddMEal.routName);
               },
-              child: Text("Dodoaj posiłek "),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) => MealListItem(),
+              child: Material(
+                color: Colors.greenAccent,
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32.0)),
+                child: Icon(
+                  Icons.add_rounded,
+                  size: 70,
                 ),
               ),
             ),
-          ],
+          ),
         ),
-      ),
+      ]),
     );
   }
 }

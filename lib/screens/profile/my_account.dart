@@ -57,15 +57,16 @@ class _MyAccountState extends State<MyAccount> {
         }));
   }
 
-  // funkcja do pokazania okna dialogowego
-  Future<Null> cupertinoDialogShow(BuildContext context) async {
-    await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return MyDialogClass();
-        });
-  }
+  // // funkcja do pokazania okna dialogowego
+  // Future<Null> cupertinoDialogShow(BuildContext context) async {
+  //   await showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return MyDialogClass();
+  //       });
+  // }
 
+  //  APPBAR WIDGET
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -102,38 +103,38 @@ class _MyAccountState extends State<MyAccount> {
   }
 }
 
-class MyDialogClass extends StatefulWidget {
-  MyDialogClass({Key key}) : super(key: key);
+// class MyDialogClass extends StatefulWidget {
+//   MyDialogClass({Key key}) : super(key: key);
 
-  @override
-  _MyDialogClassState createState() => _MyDialogClassState();
-}
+//   @override
+//   _MyDialogClassState createState() => _MyDialogClassState();
+// }
 
-class _MyDialogClassState extends State<MyDialogClass> {
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoAlertDialog(
-      title: Text(
-        "Alerting you",
-        style: TextStyle(color: Colors.red),
-      ),
-      content: Text("Guwno dupa cycyki"),
-      actions: <Widget>[
-        FlatButton(
-            onPressed: () {},
-            child: Text(
-              "Verify",
-              style: TextStyle(color: Colors.blue),
-            )),
-        FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop(context);
-            },
-            child: Text(
-              "Cancel",
-              style: TextStyle(color: Colors.blue),
-            ))
-      ],
-    );
-  }
-}
+// class _MyDialogClassState extends State<MyDialogClass> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return CupertinoAlertDialog(
+//       title: Text(
+//         "Alerting you",
+//         style: TextStyle(color: Colors.red),
+//       ),
+//       content: Text("Guwno dupa cycyki"),
+//       actions: <Widget>[
+//         FlatButton(
+//             onPressed: () {},
+//             child: Text(
+//               "Verify",
+//               style: TextStyle(color: Colors.blue),
+//             )),
+//         FlatButton(
+//             onPressed: () {
+//               Navigator.of(context).pop(context);
+//             },
+//             child: Text(
+//               "Cancel",
+//               style: TextStyle(color: Colors.blue),
+//             ))
+//       ],
+//     );
+//   }
+// }
