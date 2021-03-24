@@ -1,4 +1,4 @@
-import 'package:fitstat_app/models/user.dart';
+import 'package:fitstat_app/models/appUser.dart';
 import 'package:fitstat_app/screens/authenticate/authenticate.dart';
 import 'package:fitstat_app/screens/home/home.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
+    final user = Provider.of<AppUser>(context);
 
     print(user);
     //Return either home or authenticate widget

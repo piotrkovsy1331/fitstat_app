@@ -1,19 +1,19 @@
-class User {
-  final String uid;
-  User({this.uid});
+class AppUser {
+  final String/*?*/ uid;
+  AppUser({this.uid});
 }
 
-class UserDescription {
-  final String uid;
-  final String name;
-  final String sex;
-  final int age;
-  final int weight;
-  final int height;
+class AppUserDescription {
+  final String/*?*/ uid;
+  final String/*?*/ name;
+  final String/*?*/ sex;
+  final int/*?*/ age;
+  final int/*?*/ weight;
+  final int/*?*/ height;
 
-  final String photoUrl;
+  final String/*?*/ photoUrl;
 
-  UserDescription(
+  AppUserDescription(
       {this.uid,
       this.name,
       this.sex,

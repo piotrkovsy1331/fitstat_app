@@ -23,7 +23,7 @@ class MealDetailScreen extends StatelessWidget {
           Navigator.pop(context);
         },
       ),
-    
+
       // On Android by default its false
       centerTitle: true,
       title: Image.asset(

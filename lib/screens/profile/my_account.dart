@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fitstat_app/services/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:fitstat_app/models/user.dart';
+import 'package:fitstat_app/models/appUser.dart';
 
 import 'package:fitstat_app/components/my_bottom_nav_bar.dart';
 import 'package:fitstat_app/shared/constants.dart';

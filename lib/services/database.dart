@@ -12,7 +12,7 @@ class DatabaseService {
 
 //Collection for indywidual data of user
   final CollectionReference userDataCollection =
-      Firestore.instance.collection('userData');
+      FirebaseFirestore.instance.collection('userData');
 // Collection for mealday
 // final CollectionReference mealDayDataCollection = userDataCollection.document(uid)
 // Add MealDay collection
@@ -20,10 +20,10 @@ class DatabaseService {
     MealDay mealday = MealDay(DateTime.now(), "kanapka", 550);
 
     userDataCollection
-        .document(uid)
+        .doc(uid)
         .collection('daymeal')
-        .document()
-        .setData(mealday.toMap());
+        .doc()
+        .set(mealday.toMap());
   }
 
   Future updateProductInMealDay() async {
@@ -38,10 +38,10 @@ class DatabaseService {
         imageUrl: "httpnkjdfnkjdfkjsfkjnsd");
 
     userDataCollection
-        .document(uid)
+        .doc(uid)
         .collection('daymeal')
-        .document("mANv4Zv4xFBaUwwcY7ih")
-        .updateData({
+        .doc("mANv4Zv4xFBaUwwcY7ih")
+        .update({
       "products": FieldValue.arrayUnion([product.toMap()])
     });
   }
@@ -49,11 +49,7 @@ class DatabaseService {
 // Add MealDay collection
   Future addMealDay(String calories, DateTime date, int fat, int protein,
       int sugar, String uid) async {
-    return await userDataCollection
-        .document(uid)
-        .collection('mealDay')
-        .document()
-        .setData({
+    return await userDataCollection.doc(uid).collection('mealDay').doc().set({
       'calories': calories,
       'date': Timestamp.now(),
       'fat': fat,
@@ -109,11 +105,11 @@ class DatabaseService {
   }
 
   final CollectionReference productCollection =
-      Firestore.instance.collection('meal').document().collection('product');
+      FirebaseFirestore.instance.collection('meal').doc().collection('product');
 
   Future updateUserData(String name, String sex, int age, int weight,
       int height, String photo) async {
-    return await userDataCollection.document(uid).setData({
+    return await userDataCollection.doc(uid).set({
       'uid': uid,
       'name': name,
       "sex": sex,

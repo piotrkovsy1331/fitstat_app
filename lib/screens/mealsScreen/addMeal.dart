@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+// import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fitstat_app/services/database.dart';
 import 'package:provider/provider.dart';
-import 'package:fitstat_app/models/user.dart';
+import 'package:fitstat_app/models/appUser.dart';
 
 class AddMEal extends StatefulWidget {
   static const routName = 'add';
@@ -12,7 +12,7 @@ class AddMEal extends StatefulWidget {
 }
 
 class _AddMEalState extends State<AddMEal> {
-  final _formKey = GlobalKey<FormBuilderState>();
+  final _formKey = GlobalKey<FormState>();
   final DatabaseService _databaseService = DatabaseService();
   String _foodName;
   String _calories;
@@ -21,7 +21,7 @@ class _AddMEalState extends State<AddMEal> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
+    final user = Provider.of<AppUser>(context);
     return Container(
       child: Scaffold(
         appBar: buildAppBar(context),
@@ -30,55 +30,55 @@ class _AddMEalState extends State<AddMEal> {
             padding: EdgeInsets.all(10),
             child: Column(
               children: <Widget>[
-                FormBuilder(
-                  key: _formKey,
-                  child: Column(
-                    children: <Widget>[
-                      FormBuilderFilterChip(
-                        name: 'filter_chip',
-                        decoration: InputDecoration(
-                          labelText: 'Select many options',
-                        ),
-                        options: [
-                          FormBuilderFieldOption(
-                              value: 'Test', child: Text('Test')),
-                          FormBuilderFieldOption(
-                              value: 'Test 1', child: Text('Test 1')),
-                          FormBuilderFieldOption(
-                              value: 'Test 2', child: Text('Test 2')),
-                          FormBuilderFieldOption(
-                              value: 'Test 3', child: Text('Test 3')),
-                          FormBuilderFieldOption(
-                              value: 'Test 4', child: Text('Test 4')),
-                        ],
-                      ),
-                      FormBuilderChoiceChip(
-                        name: 'choice_chip',
-                        decoration: InputDecoration(
-                          labelText: 'Select an option',
-                        ),
-                        options: [
-                          FormBuilderFieldOption(
-                              value: 'Test', child: Text('Test')),
-                          FormBuilderFieldOption(
-                              value: 'Test 1', child: Text('Test 1')),
-                          FormBuilderFieldOption(
-                              value: 'Test 2', child: Text('Test 2')),
-                          FormBuilderFieldOption(
-                              value: 'Test 3', child: Text('Test 3')),
-                          FormBuilderFieldOption(
-                              value: 'Test 4', child: Text('Test 4')),
-                        ],
-                      ),
-                      FormBuilderColorPickerField(
-                        name: 'color_picker',
-                        // initialValue: Colors.yellow,
-                        colorPickerType: ColorPickerType.MaterialPicker,
-                        decoration: InputDecoration(labelText: 'Pick Color'),
-                      ),
-                    ],
-                  ),
-                ),
+                // FormBuilder(
+                //   key: _formKey,
+                //   child: Column(
+                //     children: <Widget>[
+                //       FormBuilderFilterChip(
+                //         name: 'filter_chip',
+                //         decoration: InputDecoration(
+                //           labelText: 'Select many options',
+                //         ),
+                //         options: [
+                //           FormBuilderFieldOption(
+                //               value: 'Test', child: Text('Test')),
+                //           FormBuilderFieldOption(
+                //               value: 'Test 1', child: Text('Test 1')),
+                //           FormBuilderFieldOption(
+                //               value: 'Test 2', child: Text('Test 2')),
+                //           FormBuilderFieldOption(
+                //               value: 'Test 3', child: Text('Test 3')),
+                //           FormBuilderFieldOption(
+                //               value: 'Test 4', child: Text('Test 4')),
+                //         ],
+                //       ),
+                //       FormBuilderChoiceChip(
+                //         name: 'choice_chip',
+                //         decoration: InputDecoration(
+                //           labelText: 'Select an option',
+                //         ),
+                //         options: [
+                //           FormBuilderFieldOption(
+                //               value: 'Test', child: Text('Test')),
+                //           FormBuilderFieldOption(
+                //               value: 'Test 1', child: Text('Test 1')),
+                //           FormBuilderFieldOption(
+                //               value: 'Test 2', child: Text('Test 2')),
+                //           FormBuilderFieldOption(
+                //               value: 'Test 3', child: Text('Test 3')),
+                //           FormBuilderFieldOption(
+                //               value: 'Test 4', child: Text('Test 4')),
+                //         ],
+                //       ),
+                //       FormBuilderColorPickerField(
+                //         name: 'color_picker',
+                //         // initialValue: Colors.yellow,
+                //         colorPickerType: ColorPickerType.MaterialPicker,
+                //         decoration: InputDecoration(labelText: 'Pick Color'),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 OutlineButton(
                   onPressed: () async {
                     await _databaseService.addMealDay(
