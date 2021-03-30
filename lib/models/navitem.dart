@@ -27,7 +27,7 @@ class NavItems extends ChangeNotifier {
   void chnageNavIndex({int index}) {
     selectedIndex = index;
     // if any changes made it notify widgets that use the value
-    notifyListeners();
+    notifyListeners(); 
   }
 
   List<NavItem> items = [

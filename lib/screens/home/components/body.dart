@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fitstat_app/models/meal.dart';
 import 'package:fitstat_app/shared/size_config.dart';
-
+import 'package:fitstat_app/models/meal.dart';
 import 'meals.dart';
 import 'meal_card.dart';
 

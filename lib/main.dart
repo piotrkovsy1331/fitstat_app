@@ -1,36 +1,15 @@
-// import 'package:fitstat_app/models/user.dart';
-// import 'package:fitstat_app/screens/wrapper.dart';
-// import 'package:fitstat_app/services/auth.dart';
-// import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return StreamProvider<User>.value(
-//       value: AuthService().user,
-//       child: MaterialApp(
-//         home: Wrapper(),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:fitstat_app/screens/wrapper.dart';
 import 'package:fitstat_app/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'package:provider/provider.dart';
 import 'package:fitstat_app/models/NavItem.dart';
-import 'package:fitstat_app/models/user.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:fitstat_app/models/appUser.dart';
+import 'package:fitstat_app/screens/mealsScreen/mealDetailScreen.dart';
+import 'package:fitstat_app/screens/mealsScreen/addMeal.dart';
 
 void main() async {
-  await DotEnv().load('.env');
+  await DotEnv.load(fileName: '.env');
   runApp(MyApp());
 }
 
@@ -41,7 +20,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<NavItems>(create: (context) => NavItems()),
-        StreamProvider<User>.value(value: AuthService().user),
+        StreamProvider<AppUser>.value(
+          value: AuthService().user,
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -54,6 +35,10 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: Wrapper(),
+        routes: {
+          MealDetailScreen.routName: (context) => MealDetailScreen(),
+          AddMEal.routName: (context) => AddMEal(),
+        },
       ),
     );
   }
