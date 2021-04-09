@@ -25,9 +25,9 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
+            backgroundColor: Colors.brown[50],
             appBar: AppBar(
-              backgroundColor: Colors.brown[400],
+              backgroundColor: kPrimaryColor,
               elevation: 0.0,
               title: Text('Zaloguj się do fitStatapp'),
               actions: <Widget>[

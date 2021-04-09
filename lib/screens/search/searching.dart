@@ -86,7 +86,7 @@ class _SearchingState extends State<Searching> {
                             food['brand_name_item_name'],
                             maxLines: 1,
                           ),
-                          hoverColor: Colors.yellow ,
+                          hoverColor: Colors.yellow,
                         );
                       }).toList(),
                     ),
@@ -144,7 +144,7 @@ class _SearchFormState extends State<SearchForm> {
             ),
             SizedBox(
               width: double.infinity,
-              child: FlatButton(
+              child: ElevatedButton(
                 onPressed: () {
                   final isValid = _formKey.currentState.validate();
                   if (isValid) {
@@ -157,9 +157,9 @@ class _SearchFormState extends State<SearchForm> {
                     });
                   }
                 },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                color: Colors.green,
+                // shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(5)),
+                // color: Colors.green,
                 child: Padding(
                   padding: const EdgeInsets.all(13),
                   child: Text(

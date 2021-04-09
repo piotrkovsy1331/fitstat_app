@@ -26,9 +26,9 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
+            backgroundColor: Colors.brown[50],
             appBar: AppBar(
-              backgroundColor: Colors.brown[400],
+              backgroundColor: kPrimaryColor,
               elevation: 0.0,
               title: Text('Zarejestruj się'),
               actions: <Widget>[
@@ -54,7 +54,6 @@ class _RegisterState extends State<Register> {
                       onChanged: (val) {
                         setState(() => email = val);
                       },
-                      
                     ),
                     SizedBox(height: 20.0),
                     TextFormField(

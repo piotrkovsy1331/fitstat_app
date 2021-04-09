@@ -5,7 +5,6 @@ import 'package:fitstat_app/screens/home/components/body.dart';
 import 'package:fitstat_app/shared/size_config.dart';
 import 'package:fitstat_app/services/auth.dart';
 
-
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,12 +21,6 @@ class HomeScreen extends StatelessWidget {
   AppBar buildAppBar() {
     final AuthService _auth = AuthService();
     return AppBar(
-      leading: IconButton(
-        icon: SvgPicture.asset("assets/icons/menu.svg"),
-        onPressed: () {
-        
-        },
-      ),
       // On Android by default its false
       centerTitle: true,
       title: Image.asset("assets/images/logo.png"),

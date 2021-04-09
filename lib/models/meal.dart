@@ -6,7 +6,7 @@ class Meal {
   final String title, description, imageSrc;
   final List<Color> gradientColors;
 
-  Meal({
+  Meal({ 
     this.id,
     this.chefs,
     this.recipes,

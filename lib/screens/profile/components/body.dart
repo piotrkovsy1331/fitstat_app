@@ -2,7 +2,7 @@ import 'package:fitstat_app/screens/profile/components/editProfilInfo.dart';
 import 'package:fitstat_app/shared/custom_rect_tween.dart';
 import 'package:flutter/material.dart';
 import 'package:fitstat_app/shared/size_config.dart';
-import 'package:rxdart/streams.dart';
+
 import 'info.dart';
 import 'profile_menu_item.dart';
 import 'package:fitstat_app/shared/hero_dialog_route.dart';
@@ -55,7 +55,7 @@ class Body extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context)
                       .push(HeroDialogRoute(builder: (context) {
-                    return editProfileInfoPage();
+                    return editProfileInfoCard();
                   }));
                 },
                 child: Hero(

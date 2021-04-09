@@ -1,5 +1,6 @@
+import 'package:fitstat_app/models/product.dart';
+import 'package:fitstat_app/shared/size_config.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fitstat_app/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:fitstat_app/models/appUser.dart';
@@ -12,90 +13,287 @@ class AddMEal extends StatefulWidget {
 }
 
 class _AddMEalState extends State<AddMEal> {
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _addMealFormKey = GlobalKey<FormState>();
   final DatabaseService _databaseService = DatabaseService();
   String _foodName;
-  String _calories;
-  String _protein;
-  String _fat;
+  int _weight;
+  int _calories;
+  int _protein;
+  int _fat;
+  int _sugar;
+  int _carbs;
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<AppUser>(context);
-    return Container(
-      child: Scaffold(
-        appBar: buildAppBar(context),
-        body: Container(
-          child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Column(
-              children: <Widget>[
-                // FormBuilder(
-                //   key: _formKey,
-                //   child: Column(
-                //     children: <Widget>[
-                //       FormBuilderFilterChip(
-                //         name: 'filter_chip',
-                //         decoration: InputDecoration(
-                //           labelText: 'Select many options',
-                //         ),
-                //         options: [
-                //           FormBuilderFieldOption(
-                //               value: 'Test', child: Text('Test')),
-                //           FormBuilderFieldOption(
-                //               value: 'Test 1', child: Text('Test 1')),
-                //           FormBuilderFieldOption(
-                //               value: 'Test 2', child: Text('Test 2')),
-                //           FormBuilderFieldOption(
-                //               value: 'Test 3', child: Text('Test 3')),
-                //           FormBuilderFieldOption(
-                //               value: 'Test 4', child: Text('Test 4')),
-                //         ],
-                //       ),
-                //       FormBuilderChoiceChip(
-                //         name: 'choice_chip',
-                //         decoration: InputDecoration(
-                //           labelText: 'Select an option',
-                //         ),
-                //         options: [
-                //           FormBuilderFieldOption(
-                //               value: 'Test', child: Text('Test')),
-                //           FormBuilderFieldOption(
-                //               value: 'Test 1', child: Text('Test 1')),
-                //           FormBuilderFieldOption(
-                //               value: 'Test 2', child: Text('Test 2')),
-                //           FormBuilderFieldOption(
-                //               value: 'Test 3', child: Text('Test 3')),
-                //           FormBuilderFieldOption(
-                //               value: 'Test 4', child: Text('Test 4')),
-                //         ],
-                //       ),
-                //       FormBuilderColorPickerField(
-                //         name: 'color_picker',
-                //         // initialValue: Colors.yellow,
-                //         colorPickerType: ColorPickerType.MaterialPicker,
-                //         decoration: InputDecoration(labelText: 'Pick Color'),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                OutlineButton(
-                  onPressed: () async {
-                    await _databaseService.addMealDay(
-                        '156', DateTime.now(), 53, 69, 70, user.uid);
-                  },
-                  child: Text("Add Meal day Document to user doc "),
+    final _product = Product();
+    double defaultSize = SizeConfig.defaultSize;
+
+    Widget _buildFoodNameField() {
+      return TextFormField(
+        decoration: InputDecoration(
+          labelText: 'Nazwa Produktu',
+          border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(40.0),
+            borderSide: new BorderSide(),
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(40.0),
+              borderSide: BorderSide(color: Colors.green, width: 2.0)),
+          fillColor: Colors.green,
+        ),
+        validator: (String value) {
+          if (value.isEmpty) {
+            return " Podaj nazwę produktu";
+          }
+          return null;
+        },
+        onSaved: (String value) {
+          _foodName = value;
+        },
+      );
+    }
+
+    Widget _buildFoodWeight() {
+      return TextFormField(
+        decoration: InputDecoration(
+          labelText: 'Waga produktu w gramach',
+          border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(40.0),
+            borderSide: new BorderSide(),
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(40.0),
+              borderSide: BorderSide(color: Colors.green, width: 2.0)),
+        ),
+        keyboardType: TextInputType.number,
+        validator: (String value) {
+          int weight = int.tryParse(value);
+          if (weight == null || weight.isNegative) {
+            return 'Podaj wagę produktu';
+          }
+        },
+        onSaved: (String value) {
+          _weight = int.tryParse(value);
+        },
+      );
+    }
+
+    Widget _buildFoodProtein() {
+      return TextFormField(
+        decoration: InputDecoration(
+          labelText: 'Ilość białka na 100 g produktu',
+          border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(40.0),
+            borderSide: new BorderSide(),
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(40.0),
+              borderSide: BorderSide(color: Colors.green, width: 2.0)),
+        ),
+        keyboardType: TextInputType.number,
+        validator: (String value) {
+          int protein = int.tryParse(value);
+          if (protein == null || protein.isNegative) {
+            return 'Podaj ilość białka ';
+          }
+        },
+        onSaved: (String value) {
+          _protein = int.tryParse(value);
+        },
+      );
+    }
+
+    Widget _buildFoodFat() {
+      return TextFormField(
+        decoration: InputDecoration(
+          labelText: 'Ilość tłuszczy na 100 g produktu',
+          border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(40.0),
+            borderSide: new BorderSide(),
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(40.0),
+              borderSide: BorderSide(color: Colors.green, width: 2.0)),
+        ),
+        keyboardType: TextInputType.number,
+        validator: (String value) {
+          int fat = int.tryParse(value);
+          if (fat == null || fat.isNegative) {
+            return 'Podaj ilość tłuszczy ';
+          }
+        },
+        onSaved: (String value) {
+          _fat = int.tryParse(value);
+        },
+      );
+    }
+
+    Widget _buildFoodSugar() {
+      return TextFormField(
+        decoration: InputDecoration(
+          labelText: 'Ilość cukru na 100 g produktu',
+          border: new OutlineInputBorder(
+            borderRadius: new BorderRadius.circular(40.0),
+            borderSide: new BorderSide(color: Colors.green, width: 3.0),
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(40.0),
+              borderSide: BorderSide(color: Colors.green, width: 2.0)),
+        ),
+        keyboardType: TextInputType.number,
+        validator: (String value) {
+          int sugar = int.tryParse(value);
+          if (sugar == null || sugar.isNegative) {
+            return 'Podaj cukrów tłuszczy ';
+          }
+        },
+        onSaved: (String value) {
+          _sugar = int.tryParse(value);
+        },
+      );
+    }
+
+    Widget _buildFoodCarbs() {
+      return TextFormField(
+        decoration: InputDecoration(
+          labelText: 'Ilość węglowodanów na 100 g produktu',
+          border: new OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(40.0),
+              borderSide: new BorderSide()),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: new BorderRadius.circular(40.0),
+              borderSide: BorderSide(color: Colors.green, width: 2.0)),
+        ),
+        keyboardType: TextInputType.number,
+        validator: (String value) {
+          int carbs = int.tryParse(value);
+          if (carbs == null || carbs.isNegative) {
+            return 'Podaj węglowodanów tłuszczy ';
+          }
+        },
+        onSaved: (String value) {
+          _carbs = int.tryParse(value);
+        },
+      );
+    }
+
+    return Scaffold(
+      appBar: buildAppBar(context),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        Text(
+                          "Dodaj Posiłek ",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: defaultSize * 2.8,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                OutlineButton(
-                  onPressed: () async {
-                    await _databaseService.addDayMeal();
-                    await _databaseService.updateProductInMealDay();
-                  },
-                  child: Text("Dodaj produkt "),
+                Column(
+                  children: [
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Builder(
+                          builder: (context) => Form(
+                            key: _addMealFormKey,
+                            child: Container(
+                              padding:
+                                  EdgeInsets.fromLTRB(5.0, 20.0, 5.0, 20.0),
+                              child: Column(
+                                children: [
+                                  _buildFoodNameField(),
+                                  SizedBox(height: 10),
+                                  _buildFoodWeight(),
+                                  SizedBox(height: 10),
+                                  _buildFoodProtein(),
+                                  SizedBox(height: 10),
+                                  _buildFoodFat(),
+                                  SizedBox(height: 10),
+                                  _buildFoodSugar(),
+                                  SizedBox(height: 10),
+                                  _buildFoodCarbs(),
+                                  SizedBox(
+                                    height: 100,
+                                  ),
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.blueAccent,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 30, vertical: 15),
+                                        textStyle: TextStyle(
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold)),
+                                    child: Text(
+                                      'Zapisz',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15.0),
+                                    ),
+                                    onPressed: () {
+                                      if (_addMealFormKey.currentState
+                                          .validate()) {
+                                        return;
+                                      }
+                                      _addMealFormKey.currentState.save();
+
+                                      print(_foodName);
+                                      print(_weight);
+                                      print(_protein);
+                                      print(_fat);
+                                      print(_sugar);
+                                      print(_carbs);
+                                    },
+                                  ),
+
+                                  // ElevatedButton(
+                                  //   style: ElevatedButton.styleFrom(
+                                  //       primary: Colors.blueAccent,
+                                  //       padding: EdgeInsets.symmetric(
+                                  //           horizontal: 15, vertical: 8),
+                                  //       textStyle: TextStyle(
+                                  //           fontSize: 30,
+                                  //           fontWeight: FontWeight.bold)),
+                                  //   onPressed: () {
+                                  //     if (_addMealFormKey.currentState
+                                  //         .validate()) {
+                                  //       return;
+                                  //     }
+                                  //     _addMealFormKey.currentState.save();
+
+                                  //     print(_foodName);
+                                  //     print(_weight);
+                                  //     print(_protein);
+                                  //     print(_fat);
+                                  //     print(_sugar);
+                                  //     print(_carbs);
+                                  //   },
+                                  //   child: Text('zapisz'),
+                                  // )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
+          ],
         ),
       ),
     );

@@ -2,11 +2,9 @@ import 'package:fitstat_app/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fitstat_app/services/auth.dart';
-import 'package:provider/provider.dart';
-import 'package:fitstat_app/models/appUser.dart';
 
 import 'package:fitstat_app/components/my_bottom_nav_bar.dart';
-import 'package:fitstat_app/shared/constants.dart';
+
 import 'package:fitstat_app/screens/profile/components/body.dart';
 import 'package:fitstat_app/shared/size_config.dart';
 
@@ -103,38 +101,3 @@ class _MyAccountState extends State<MyAccount> {
   }
 }
 
-// class MyDialogClass extends StatefulWidget {
-//   MyDialogClass({Key key}) : super(key: key);
-
-//   @override
-//   _MyDialogClassState createState() => _MyDialogClassState();
-// }
-
-// class _MyDialogClassState extends State<MyDialogClass> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return CupertinoAlertDialog(
-//       title: Text(
-//         "Alerting you",
-//         style: TextStyle(color: Colors.red),
-//       ),
-//       content: Text("Guwno dupa cycyki"),
-//       actions: <Widget>[
-//         FlatButton(
-//             onPressed: () {},
-//             child: Text(
-//               "Verify",
-//               style: TextStyle(color: Colors.blue),
-//             )),
-//         FlatButton(
-//             onPressed: () {
-//               Navigator.of(context).pop(context);
-//             },
-//             child: Text(
-//               "Cancel",
-//               style: TextStyle(color: Colors.blue),
-//             ))
-//       ],
-//     );
-//   }
-// }

@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:fitstat_app/shared/constants.dart';
+
 import 'product.dart';
 
 //Model for MealItem that consists from model_items

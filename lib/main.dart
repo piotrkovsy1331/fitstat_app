@@ -25,11 +25,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<NavItems>(create: (context) => NavItems()),
         StreamProvider<AppUser>.value(
           value: AuthService().user,
+          initialData: AppUser(),
         ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Recipe App',
+        title: 'Fitstat_app',
         theme: ThemeData(
           // backgroundColor: Colors.white,
           scaffoldBackgroundColor: Colors.white,
