@@ -15,7 +15,7 @@ class AddMEal extends StatefulWidget {
 class _AddMEalState extends State<AddMEal> {
   final GlobalKey<FormState> _addMealFormKey = GlobalKey<FormState>();
   final DatabaseService _databaseService = DatabaseService();
-  String _foodName;
+  String _foodName = "Jablko";
   int _weight;
   int _calories;
   int _protein;
@@ -180,7 +180,7 @@ class _AddMEalState extends State<AddMEal> {
 
     return Scaffold(
       appBar: buildAppBar(context),
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Stack(
           children: [
             Column(
@@ -226,38 +226,48 @@ class _AddMEalState extends State<AddMEal> {
                                   _buildFoodSugar(),
                                   SizedBox(height: 10),
                                   _buildFoodCarbs(),
-                                  SizedBox(
-                                    height: 100,
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                        primary: Colors.blueAccent,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 30, vertical: 15),
-                                        textStyle: TextStyle(
-                                            fontSize: 30,
-                                            fontWeight: FontWeight.bold)),
-                                    child: Text(
-                                      'Zapisz',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 15.0),
+
+                                  Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Padding(
+                                      padding: EdgeInsets.all(50.0),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          if (_addMealFormKey.currentState
+                                              .validate()) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                    content: Text(
+                                                        'Processing Data')));
+                                          }
+                                          _addMealFormKey.currentState.save();
+
+                                          print(_foodName);
+                                          print(_weight);
+                                          print(_protein);
+                                          print(_fat);
+                                          print(_sugar);
+                                          print(_carbs);
+                                        },
+                                        child: Material(
+                                            color: Colors.greenAccent,
+                                            elevation: 2,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(5.0)),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Text(
+                                                "zapisz",
+                                                style: TextStyle(
+                                                    fontSize: 25,
+                                                    color: Colors.white),
+                                              ),
+                                            )),
+                                      ),
                                     ),
-                                    onPressed: () {
-                                      if (_addMealFormKey.currentState
-                                          .validate()) {
-                                        return;
-                                      }
-                                      _addMealFormKey.currentState.save();
-
-                                      print(_foodName);
-                                      print(_weight);
-                                      print(_protein);
-                                      print(_fat);
-                                      print(_sugar);
-                                      print(_carbs);
-                                    },
                                   ),
-
                                   // ElevatedButton(
                                   //   style: ElevatedButton.styleFrom(
                                   //       primary: Colors.blueAccent,

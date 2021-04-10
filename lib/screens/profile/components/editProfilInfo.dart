@@ -17,9 +17,7 @@ class _editProfileInfoCardState extends State<editProfileInfoCard> {
   int _age;
   int _weight;
   int _height;
-
   final GlobalKey<FormState> _formKeyUserPage = GlobalKey<FormState>();
-
   Widget _buildNameField() {
     return TextFormField(
       decoration: InputDecoration(labelText: 'Imię'),
@@ -167,6 +165,8 @@ class _editProfileInfoCardState extends State<editProfileInfoCard> {
                             print(_age);
                             print(_height);
                             print(_weight);
+
+                            _formKeyUserPage.currentState.reset();
                           },
                         )
                       ],
