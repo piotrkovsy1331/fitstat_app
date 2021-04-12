@@ -29,6 +29,7 @@ dependencies:
   flutter_spinkit: ^5.0.0 
   firebase_core: 
   intl: ^0.17.0
+  image_picker: ^0.7.4
   
   
 
@@ -43,6 +44,7 @@ dependencies:
   flutter_dotenv: ^4.0.0-nullsafety.0 
   dio: ^4.0.0-prev3  
   oauth2: ^2.0.0 
+
   
 
 dev_dependencies:

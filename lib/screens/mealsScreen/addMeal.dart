@@ -268,30 +268,7 @@ class _AddMEalState extends State<AddMEal> {
                                       ),
                                     ),
                                   ),
-                                  // ElevatedButton(
-                                  //   style: ElevatedButton.styleFrom(
-                                  //       primary: Colors.blueAccent,
-                                  //       padding: EdgeInsets.symmetric(
-                                  //           horizontal: 15, vertical: 8),
-                                  //       textStyle: TextStyle(
-                                  //           fontSize: 30,
-                                  //           fontWeight: FontWeight.bold)),
-                                  //   onPressed: () {
-                                  //     if (_addMealFormKey.currentState
-                                  //         .validate()) {
-                                  //       return;
-                                  //     }
-                                  //     _addMealFormKey.currentState.save();
-
-                                  //     print(_foodName);
-                                  //     print(_weight);
-                                  //     print(_protein);
-                                  //     print(_fat);
-                                  //     print(_sugar);
-                                  //     print(_carbs);
-                                  //   },
-                                  //   child: Text('zapisz'),
-                                  // )
+                     
                                 ],
                               ),
                             ),

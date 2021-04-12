@@ -8,6 +8,7 @@ import 'package:fitstat_app/models/NavItem.dart';
 import 'package:fitstat_app/models/appUser.dart';
 import 'package:fitstat_app/screens/mealsScreen/mealDetailScreen.dart';
 import 'package:fitstat_app/screens/mealsScreen/addMeal.dart';
+import 'package:fitstat_app/screens/profile/editProfile/editProfileInfo.dart';
 
 void main() async {
   await DotEnv.load(fileName: '.env');
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         routes: {
           MealDetailScreen.routName: (context) => MealDetailScreen(),
           AddMEal.routName: (context) => AddMEal(),
+          editProfilePage.routName: (context) => editProfilePage(),
         },
       ),
     );

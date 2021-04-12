@@ -1,13 +1,10 @@
-import 'package:fitstat_app/screens/profile/components/editProfilInfo.dart';
-import 'package:fitstat_app/shared/custom_rect_tween.dart';
+import 'package:fitstat_app/screens/profile/editProfile/editProfileInfo.dart';
+
 import 'package:flutter/material.dart';
 import 'package:fitstat_app/shared/size_config.dart';
 
 import 'info.dart';
 import 'profile_menu_item.dart';
-import 'package:fitstat_app/shared/hero_dialog_route.dart';
-
-const String _heroEditProfileInfo = 'edit-profile-page';
 
 class Body extends StatelessWidget {
   @override
@@ -44,40 +41,34 @@ class Body extends StatelessWidget {
                   title: "182 cm",
                   press: () {},
                 ),
-              ],
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: EdgeInsets.all(32.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context)
-                      .push(HeroDialogRoute(builder: (context) {
-                    return editProfileInfoCard();
-                  }));
-                },
-                child: Hero(
-                  tag: _heroEditProfileInfo,
-                  createRectTween: (begin, end) {
-                    return CustomRectTween(begin: begin, end: end);
-                  },
-                  child: Material(
-                    color: Colors.redAccent,
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    child: Icon(
-                      Icons.edit_sharp,
-                      size: 56,
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(editProfilePage.routName);
+                      },
+                      child: Material(
+                          color: Colors.greenAccent,
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.0)),
+                          child: Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(30, 10, 30, 10),
+                              child: Text(
+                                "Edytuj",
+                                style: TextStyle(
+                                    fontSize: 20.0, color: Colors.white),
+                              ))),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
-          )
+          ),
         ],
       ),
     );
