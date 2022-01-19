@@ -14,7 +14,7 @@ const textInputDecoration = InputDecoration(
       width: 2,
     )));
 
-final Color backgroundColor = Color(0xFF4A4A58);
+const Color backgroundColor = Color(0xFF4A4A58);
 
 const kPrimaryColor = Color(0xFF84AB5C);
 const kTextColor = Color(0xFF202E2E);
