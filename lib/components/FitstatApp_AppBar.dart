@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 
 class FitstatApp_AppBar extends StatelessWidget with PreferredSizeWidget {
   FitstatApp_AppBar({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

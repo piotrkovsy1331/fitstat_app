@@ -5,7 +5,7 @@ import 'package:fitstat_app/shared/size_config.dart';
 import 'package:fitstat_app/screens/mealsScreen/addMeal.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key key}) : super(key: key);
+  const Body({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,6 @@ class Body extends StatelessWidget {
             padding: EdgeInsets.all(50.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context).pushNamed(AddMEal.routName);
               },
               child: Material(
                 color: Colors.greenAccent,

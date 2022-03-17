@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:fitstat_app/models/mealDay.dart";
-import 'package:fitstat_app/models/product.dart';
+
 
 class DatabaseService {
   final String uid;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  DatabaseService({this.uid});
+  DatabaseService({required this.uid});
   //collection refference
 
 //Collection for indywidual data of user
@@ -26,25 +26,25 @@ class DatabaseService {
         .set(mealday.toMap());
   }
 
-  Future updateProductInMealDay() async {
-    Product product = Product(
-        mealType: 1,
-        foodName: "Pizza",
-        calories: 512,
-        fat: 33,
-        protein: 222,
-        sugar: 30,
-        servingUnits: "grams",
-        imageUrl: "httpnkjdfnkjdfkjsfkjnsd");
+  // Future updateProductInMealDay() async {
+  //   Product product = Product(
+  //       mealType: 1,
+  //       foodName: "Pizza",
+  //       calories: 512,
+  //       fat: 33,
+  //       protein: 222,
+  //       sugar: 30,
+  //       servingUnits: "grams",
+  //       imageUrl: "httpnkjdfnkjdfkjsfkjnsd");
 
-    userDataCollection
-        .doc(uid)
-        .collection('daymeal')
-        .doc("mANv4Zv4xFBaUwwcY7ih")
-        .update({
-      "products": FieldValue.arrayUnion([product.toMap()])
-    });
-  }
+  //   userDataCollection
+  //       .doc(uid)
+  //       .collection('daymeal')
+  //       .doc("mANv4Zv4xFBaUwwcY7ih")
+  //       .update({
+  //     "products": FieldValue.arrayUnion([product.toMap()])
+  //   });
+  // }
 
 // Add MealDay collection
   Future addMealDay(String calories, DateTime date, int fat, int protein,

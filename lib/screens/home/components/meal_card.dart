@@ -2,13 +2,11 @@ import 'package:fitstat_app/screens/mealsScreen/mealDetailScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fitstat_app/shared/size_config.dart';
-import 'package:fitstat_app/models/meal.dart';
 
 class MealCard extends StatelessWidget {
-  final Meal meal;
   final Function press;
 
-  const MealCard({Key key, this.meal, this.press}) : super(key: key);
+  const MealCard({Key? key, required this.press}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
@@ -16,11 +14,11 @@ class MealCard extends StatelessWidget {
     return GestureDetector(
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.bottomRight,
-            colors: meal.gradientColors,
-          ),
+          // gradient: LinearGradient(
+          //   begin: Alignment.centerLeft,
+          //   end: Alignment.bottomRight,
+          //   colors: meal.gradientColors,
+          // ),
 
           borderRadius: BorderRadius.circular(defaultSize * 1.8), //18
         ),
@@ -35,7 +33,7 @@ class MealCard extends StatelessWidget {
                     Row(
                       children: <Widget>[
                         Text(
-                          meal.title,
+                          "Posiłek",
                           style: TextStyle(
                             fontSize: defaultSize * 2.5, //22
                             color: Colors.white,
@@ -119,10 +117,10 @@ class MealCard extends StatelessWidget {
     );
   }
 
-  Row buildInfoRow(double defaultSize, {String iconSrc, text}) {
+  Row buildInfoRow(double defaultSize, {text}) {
     return Row(
       children: <Widget>[
-        SvgPicture.asset(iconSrc),
+        // SvgPicture.asset(iconSrc),
         SizedBox(width: defaultSize), // 10
         Text(
           text,

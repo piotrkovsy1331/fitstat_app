@@ -1,29 +1,25 @@
-import 'package:fitstat_app/shared/constants.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:fitstat_app/services/auth.dart';
-
-import 'package:fitstat_app/components/my_bottom_nav_bar.dart';
-
 import 'package:fitstat_app/screens/profile/components/body.dart';
-import 'package:fitstat_app/shared/size_config.dart';
 
-class MyAccount extends StatefulWidget {
-  const MyAccount({Key key}) : super(key: key);
+import 'package:fitstat_app/shared/constants.dart';
+import 'package:fitstat_app/shared/size_config.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class UserAccountScreen extends StatefulWidget {
+  const UserAccountScreen({Key? key}) : super(key: key);
 
   @override
-  _MyAccountState createState() => _MyAccountState();
+  _UserAccountScreenState createState() => _UserAccountScreenState();
 }
 
-class _MyAccountState extends State<MyAccount> {
-  final AuthService auth = AuthService();
+class _UserAccountScreenState extends State<UserAccountScreen> {
   final _formKey = GlobalKey<FormState>();
   final List<String> sex = ['kobieta', 'meszczyzna'];
   //form values
-  String _sex;
-  String _name;
-  int _weight;
-  int height;
+  // String _sex;
+  // String _name;
+  // int _weight;
+  // int height;
 
   List<String> items = [
     "Rafał",
@@ -67,11 +63,10 @@ class _MyAccountState extends State<MyAccount> {
   //  APPBAR WIDGET
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
+    SizeConfig.init(context);
     return Scaffold(
       appBar: buildAppBar(),
       body: Body(),
-      bottomNavigationBar: MyBottomNavBar(),
     );
   }
 
@@ -84,9 +79,7 @@ class _MyAccountState extends State<MyAccount> {
       title: Text("Profile"),
       actions: <Widget>[
         FlatButton(
-          onPressed: () async {
-            await auth.signOut();
-          },
+          onPressed: () async {},
           child: Text(
             "Wyloguj",
             style: TextStyle(
@@ -100,4 +93,3 @@ class _MyAccountState extends State<MyAccount> {
     );
   }
 }
-

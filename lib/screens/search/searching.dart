@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:fitstat_app/components/my_bottom_nav_bar.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
-class Searching extends StatefulWidget {
-  Searching({Key key}) : super(key: key);
+class SearchingScreen extends StatefulWidget {
+  SearchingScreen({Key? key}) : super(key: key);
   final dio = Dio(BaseOptions(
     baseUrl: 'https://trackapi.nutritionix.com/V2/search/instant',
     //TODO Dodany klucz od api na sztywno a powiniem być zaciągnięty z .env
@@ -13,11 +12,11 @@ class Searching extends StatefulWidget {
     },
   ));
   @override
-  _SearchingState createState() => _SearchingState();
+  _SearchingScreenState createState() => _SearchingScreenState();
 }
 
-class _SearchingState extends State<Searching> {
-  List _foodList;
+class _SearchingScreenState extends State<SearchingScreen> {
+  late List _foodList;
 
   void searchFood(String query) async {
     bool branded = true;
@@ -94,7 +93,6 @@ class _SearchingState extends State<Searching> {
           ],
         ),
       ),
-      bottomNavigationBar: MyBottomNavBar(),
     );
   }
 }
@@ -102,7 +100,7 @@ class _SearchingState extends State<Searching> {
 //                                                                            WIGDET WYSZUKIWARKI
 
 class SearchForm extends StatefulWidget {
-  SearchForm({this.onSearch});
+  SearchForm({required this.onSearch});
 
   final void Function(String search) onSearch;
 
@@ -128,15 +126,14 @@ class _SearchFormState extends State<SearchForm> {
                   suffixIcon: Icon(Icons.search),
                   hintText: 'Wyszukaj produkty',
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
+                      borderRadius: BorderRadius.all(Radius.circular(20))),
                   filled: false,
                   errorStyle: TextStyle(fontSize: 15)),
               onChanged: (value) {
                 _searchedItem = value;
               },
               validator: (value) {
-                if (value.isEmpty) {
+                if (value!.isEmpty) {
                   return ' Wpisz nazwe ';
                 }
                 return null;
@@ -146,7 +143,7 @@ class _SearchFormState extends State<SearchForm> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  final isValid = _formKey.currentState.validate();
+                  final isValid = _formKey.currentState!.validate();
                   if (isValid) {
                     //TODO Perform search
                     widget.onSearch(_searchedItem);

@@ -5,11 +5,14 @@ import '../../../shared/constants.dart';
 import '../../../shared/size_config.dart';
 
 class EditPicture extends StatelessWidget {
+  final String? image;
+  
+  
   const EditPicture({
-    Key key,
+    Key? key,
     this.image,
   }) : super(key: key);
-  final String image;
+  
 
 
   @override
@@ -42,7 +45,7 @@ class EditPicture extends StatelessWidget {
                     ),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage(image),
+                      image: AssetImage(image!),
                     ),
                   ),
                 ),

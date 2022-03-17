@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'body.dart';
 
 class MealDetailScreen extends StatelessWidget {
-  const MealDetailScreen({Key key}) : super(key: key);
+  const MealDetailScreen({Key? key}) : super(key: key);
   static const routName = 'meal-detail';
   @override
   Widget build(BuildContext context) {

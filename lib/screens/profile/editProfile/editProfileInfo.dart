@@ -14,7 +14,7 @@ class editProfilePage extends StatefulWidget {
 }
 
 class _editProfilePageState extends State<editProfilePage> {
-  File _image;
+  File? _image;
   final picker = ImagePicker();
 
   Future getImage() async {
@@ -30,11 +30,11 @@ class _editProfilePageState extends State<editProfilePage> {
   }
 
   //
-  String _name;
-  String _surName;
-  int _age;
-  int _weight;
-  int _height;
+  String? _name;
+  String? _surName;
+  int? _age;
+  int? _weight;
+  int? _height;
 
   final GlobalKey<FormState> _formKeyUserPage = GlobalKey<FormState>();
 
@@ -51,14 +51,17 @@ class _editProfilePageState extends State<editProfilePage> {
           borderSide: new BorderSide(color: Colors.green, width: 2.0),
         ),
       ),
-      validator: (String value) {
-        if (value.isEmpty || value.isEmpty) {
-          return 'Podaj imię';
+      validator: (String? value) {
+        if (value != null) {
+          if (value.isEmpty || value.isEmpty) {
+            return 'Podaj imię';
+          }
         }
+
         return null;
       },
-      onSaved: (String value) {
-        _name = value;
+      onSaved: (String? value) {
+        value != null ? _name = value : null;
       },
     );
   }
@@ -76,14 +79,17 @@ class _editProfilePageState extends State<editProfilePage> {
           borderSide: new BorderSide(color: Colors.green, width: 2.0),
         ),
       ),
-      validator: (String value) {
-        if (value == null || value.isEmpty) {
-          return 'Podaj nazwisko';
+      validator: (String? value) {
+        if (value != null) {
+          if (value == null || value.isEmpty) {
+            return 'Podaj nazwisko';
+          }
         }
+
         return null;
       },
-      onSaved: (String value) {
-        _surName = value;
+      onSaved: (String? value) {
+        value != null ? _surName = value : null;
       },
     );
   }
@@ -102,20 +108,26 @@ class _editProfilePageState extends State<editProfilePage> {
         ),
       ),
       keyboardType: TextInputType.number,
-      validator: (String value) {
-        int weight = int.tryParse(value);
-        if (weight == null || weight.isNegative) {
-          return 'Podaj swój wiek';
-        }
-        // else if (age <= 0 || age >= 120) {
-        //   return 'Podano niewłaściwy wiek';
-        // }
+      // validator: (String? value) {
+      //   if(value != null){
+      //      int weight = int.tryParse(value);
+      //   if (weight == null || weight.isNegative) {
+      //     return 'Podaj swój wiek';
+      //   }
+      //   }
+      //   int weight = int.tryParse(value);
+      //   if (weight == null || weight.isNegative) {
+      //     return 'Podaj swój wiek';
+      //   }
+      //   // else if (age <= 0 || age >= 120) {
+      //   //   return 'Podano niewłaściwy wiek';
+      //   // }
 
-        return null;
-      },
-      onSaved: (String value) {
-        _weight = int.tryParse(value);
-      },
+      //   return null;
+      // },
+      // onSaved: (String value) {
+      //   _weight = int.tryParse(value);
+      // },
     );
   }
 
@@ -133,19 +145,19 @@ class _editProfilePageState extends State<editProfilePage> {
         ),
       ),
       keyboardType: TextInputType.number,
-      validator: (String value) {
-        int height = int.tryParse(value);
-        if (height == null || height.isNegative) {
-          return 'Podaj swoją wagę';
-        }
-        // else if (weight <= 0 || weight >= 300) {
-        //   return 'Podano niewłasciwą wagę ';
-        // }
-        return null;
-      },
-      onSaved: (String value) {
-        _weight = int.tryParse(value);
-      },
+      // validator: (String value) {
+      //   int height = int.tryParse(value);
+      //   if (height == null || height.isNegative) {
+      //     return 'Podaj swoją wagę';
+      //   }
+      //   // else if (weight <= 0 || weight >= 300) {
+      //   //   return 'Podano niewłasciwą wagę ';
+      //   // }
+      //   return null;
+      // },
+      // onSaved: (String value) {
+      //   _weight = int.tryParse(value);
+      // },
     );
   }
 
@@ -163,17 +175,17 @@ class _editProfilePageState extends State<editProfilePage> {
         ),
       ),
       keyboardType: TextInputType.number,
-      validator: (String value) {
-        int age = int.tryParse(value);
-        if (age == null || age.isNegative) {
-          return 'Podaj swój wzrost w cm';
-        }
+      // validator: (String value) {
+      //   int age = int.tryParse(value);
+      //   if (age == null || age.isNegative) {
+      //     return 'Podaj swój wzrost w cm';
+      //   }
 
-        return null;
-      },
-      onSaved: (String value) {
-        _age = int.tryParse(value);
-      },
+      //   return null;
+      // },
+      // onSaved: (String value) {
+      //   _age = int.tryParse(value);
+      // },
     );
   }
 
@@ -217,13 +229,13 @@ class _editProfilePageState extends State<editProfilePage> {
                               padding: EdgeInsets.all(50.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  if (_formKeyUserPage.currentState
+                                  if (_formKeyUserPage.currentState!
                                       .validate()) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         SnackBar(
                                             content: Text('Processing Data')));
                                   }
-                                  _formKeyUserPage.currentState.save();
+                                  _formKeyUserPage.currentState!.save();
 
                                   print(_name);
                                   print(_surName);

@@ -1,17 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fitstat_app/screens/wrapper.dart';
-import 'package:fitstat_app/services/auth.dart';
+import 'package:fitstat_app/routes/app_routes.dart';
+import 'package:fitstat_app/screens/authenticate/ForgotPasswordScreen.dart';
+import 'package:fitstat_app/screens/authenticate/LoginScreen.dart';
+import 'package:fitstat_app/screens/authenticate/RegistrationScreen.dart';
+import 'package:fitstat_app/screens/authenticate/cubit/auth_cubit.dart';
+import 'package:fitstat_app/screens/home/HomeScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:fitstat_app/models/NavItem.dart';
-import 'package:fitstat_app/models/appUser.dart';
-import 'package:fitstat_app/screens/mealsScreen/mealDetailScreen.dart';
-import 'package:fitstat_app/screens/mealsScreen/addMeal.dart';
-import 'package:fitstat_app/screens/profile/editProfile/editProfileInfo.dart';
 
 void main() async {
-  await DotEnv.load(fileName: '.env');
+  // await DotEnv.load(fileName: '.env');
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -23,11 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<NavItems>(create: (context) => NavItems()),
-        StreamProvider<AppUser>.value(
-          value: AuthService().user,
-          initialData: AppUser(),
-        ),
+        BlocProvider(create: (_) => AuthCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -39,11 +34,14 @@ class MyApp extends StatelessWidget {
           appBarTheme: AppBarTheme(color: Colors.white, elevation: 0),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: Wrapper(),
-        routes: {
-          MealDetailScreen.routName: (context) => MealDetailScreen(),
-          AddMEal.routName: (context) => AddMEal(),
-          editProfilePage.routName: (context) => editProfilePage(),
+        // home: Wrapper(),
+
+        initialRoute: AppRoutes.login,
+        routes: <String, WidgetBuilder>{
+          AppRoutes.login: (_) => LoginScreen(),
+          AppRoutes.signup: (_) => RegistrationScreeen(),
+          AppRoutes.home: (_) => HomeScreen(),
+          AppRoutes.forgotPassword: (_) => ForgotPasswordScreen(),
         },
       ),
     );

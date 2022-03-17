@@ -45,3 +45,23 @@ class GradientTemplate {
     GradientColors(GradientColors.fire),
   ];
 }
+
+const kHintStyle = TextStyle(fontSize: 13, letterSpacing: 1.2);
+
+// border
+var kOutlinedBorder = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(9),
+    borderSide: const BorderSide(color: Colors.transparent));
+
+var kOutlinedErrorBorder = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(9),
+    borderSide: const BorderSide(color: Colors.transparent));
+
+//custom loader button
+const kLoaderBtn = SizedBox(
+    height: 20,
+    width: 20,
+    child: CircularProgressIndicator(
+      strokeWidth: 1.5,
+      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+    ));
