@@ -14,7 +14,7 @@ class MealCard extends StatelessWidget {
     double defaultSize = SizeConfig.defaultSize;
     // Now we dont this Aspect ratio
     return GestureDetector(
-      child: Container(
+      child:Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
